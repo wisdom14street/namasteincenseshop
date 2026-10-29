@@ -1,0 +1,9 @@
+:root{--ink:#26211d;--onink:#f3ead6;--paper:#efe6d2;--card:#fbf6ea;--soft:#e8dcc0;--muted:#5c5246;--line:#d9cbb0;--accent:#c9a227;--onaccent:#26211d;--accentdark:#7a1f1f;--focus:#7a1f1f;
+--display:"Libre Caslon Text",Georgia,serif;--body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--r:2px;--btnr:0}
+.hero{background:linear-gradient(90deg,#26211d 0%,#26211d 55%,#3a2420 100%);border-bottom:6px double #c9a227}
+.hero h1{font-weight:400;letter-spacing:-.01em}.hero h1 em{font-style:italic;color:#e3c56a}
+.eyebrow{font-family:var(--display);font-style:italic;text-transform:none;letter-spacing:0;font-size:15px}
+.sechead h2{font-weight:400}.sechead{border-bottom:1px solid var(--line);padding-bottom:8px}
+.card{border-color:#cdbb98}.collage img{border:6px solid #f3ead6;box-shadow:none}
+.coll div{background:linear-gradient(transparent,#26211df0 50%)}.btn{letter-spacing:.04em}
+.bar{background:#7a1f1f;color:#f3ead6}.links a.vlink{color:#e3c56a}

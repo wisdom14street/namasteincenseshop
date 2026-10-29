@@ -1,0 +1,11 @@
+{
+  "brand": "Namaste Incense Shop",
+  "short_name": "NI Shop",
+  "site_url": "https://namasteincenseshop.com",
+  "storefront": "Namaste Incense Shop",
+  "REVIEW_URL": "",
+  "GOOGLE_SITE_VERIFICATION": "",
+  "siblings": [["Namaste Incense: the full incense shop", "https://namasteincense.com/"], ["Namaste Incense Store: value packs & gifts", "https://namasteincensestore.com/"]],
+  "theme": {"ink": "#26211d", "paper": "#efe6d2", "accent": "#c9a227",
+            "fonts": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=IBM+Plex+Sans:wght@400;500;700&display=swap"}
+}
