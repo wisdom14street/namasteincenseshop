@@ -123,6 +123,7 @@ def LANDINGS(S):
     ]
 
 BRAND_TEXT = {
+ 'escential-essences': 'Hand-dipped sticks and one-inch cones made in the USA with cosmetic-grade oils, from the Escential Essences line represented by Matchless Gifts. The temple and frankincense blends suit the altar.',
  'wolf-spirit': 'An American sage house with harvesters in California and on the High Plains. Its range runs from bundled sage to natural resin incense, smudge sticks and smoke-free sprays.',
  'fred-soll': 'Hand-dipped in pinon and other resins in Tijeras, New Mexico, just east of Albuquerque. Lay each Resin on a Stick flat in a tray; one stick smolders for one to two and a half hours.',
  'swift-lite': 'The charcoal most resin burners reach for. Swift-Lite International in Ashford, Kent, has made it since 1957, originally for church incense, and the tablets catch within seconds.',
