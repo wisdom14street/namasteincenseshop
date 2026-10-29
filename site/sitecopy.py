@@ -76,7 +76,7 @@ def _new(S): return [x for x in S.leaders][:8]
 def _whys(S):
     return [('Every herb has a listing', 'Each bundle, stick and resin has its own photo and price online, so you know what is on the shelf before you walk over.'),
             ('Coal, vessel and resin together', 'Charcoal tablets, tongs, censers and resins sit side by side, so you leave with everything a first resin burn needs.'),
-            (('Reserve and collect', f'Order online, pick Pickup at checkout, then stop by West 14th Street. Most orders are {S.READY.lower()}.') if S.PICKUP_ON else ('', '')),
+            (('Reserve and collect', f'Order online, pick Pickup at checkout, then stop by West 14th Street. Orders are {S.READY.lower()}.') if S.PICKUP_ON else ('', '')),
             ('Clear how-to guides', 'Plain step-by-step guides for smudging, palo santo and resin, written with safety first.')]
 HOME_SECTIONS = [
  {'type': 'html', 'html': _shelves},
@@ -97,7 +97,7 @@ HOME_SECTIONS = [
  {'type': 'brands', 'title': 'Makers on our shelves', 'n': 12},
  {'type': 'review'},
  {'type': 'band', 'title': 'Order tonight, collect tomorrow', 'text': lambda S: 'Prices and stock on every listing come straight from the store. Reserve online and collect at the counter, or have it posted from New York City.',
-  'steps': lambda S: [('Choose your herbs and tools', 'Browse by shelf, scent, maker or price.'), ('Select Pickup at checkout', 'Payment runs on Shopify through namastebookshop.com.'), ('Collect on West 14th', f'{S.STORE_ADDR}, between Fifth Avenue and University Place.')]},
+  'steps': lambda S: [('Choose your herbs and tools', 'Browse by shelf, scent, maker or price.'), ('Select Pickup at checkout', 'Payment runs on Shopify through namastebookshop.com.'), ('Collect on West 14th', f'{S.STORE_ADDR}, just west of Fifth Avenue.')]},
 ]
 def HOME_TITLE(S): return 'Namaste Incense Shop | Sage, Palo Santo & Resin near Union Square, NYC'
 def HOME_DESC(S): return f'Ritual and smudge apothecary at {S.STORE_ADDR}: white sage, palo santo, frankincense, myrrh, copal, charcoal, censers, smudge kits and Reiki candles. Reserve online, collect near Union Square.'
@@ -194,7 +194,7 @@ ABOUT_H1 = 'About the apothecary'
 def ABOUT(S):
     return f'''<p class="lead">Namaste Incense Shop is the ritual side of our 14th Street counter: herbs for smudging, resins and the coals to burn them, censers, kits and candles for the altar.</p>
 <p>We keep the focus narrow on purpose. If it is used to clear a space, mark an intention or scent a prayer, it belongs here; everyday stick incense lives at our sister site, <a href="https://namasteincense.com/">Namaste Incense</a>, and value packs at <a href="https://namasteincensestore.com/">Namaste Incense Store</a>.</p>
-<h2>Where to find us</h2><p>{S.STORE_ADDR}, between Fifth Avenue and University Place. Phone <a href="tel:{S.TEL}">{S.PHONE}</a>.</p>{S.hours_html()}{S.visit_buttons()}
+<h2>Where to find us</h2><p>{S.STORE_ADDR}, just west of Fifth Avenue. Phone <a href="tel:{S.TEL}">{S.PHONE}</a>.</p>{S.hours_html()}{S.visit_buttons()}
 <h2>How ordering works</h2><p>{S.LEGAL} Payment, shipping and in-store pickup are handled by our Shopify store, <a href="{S.SHOP}" rel="noopener">namastebookshop.com</a>. Prices and stock on this site refresh every day from that store.</p>
 <h2>Our shelves</h2><ul>{''.join(f'<li><a href="/shop/{AISLES[k][2]}/">{E(AISLES[k][0])}</a>: {E(AISLES[k][3])}</li>' for k in S.AISLE_KEYS)}</ul>
 <h2>A note on safety and claims</h2><p>Smoke and flame need attention: use heat-proof vessels, ventilate the room and never walk away from something burning. Descriptions of traditional or spiritual uses are cultural information, not health advice.</p>'''
@@ -232,7 +232,7 @@ def GUIDES(S):
 <h2>Safety</h2><p>Work on a heat-proof surface with the window open, keep water away from hot ceramic, and never leave a lit coal.</p><p><a class="btn" href="/shop/resins/">Shop resins</a></p>'''},
      {'path': '/smudge-supplies-near-union-square/', 'title': 'Where to Find Smudge Supplies near Union Square & the East Village', 'store_ld': True,
       'desc': f'Sage, palo santo, resin and charcoal on West 14th Street, a short walk from Union Square, the East Village and Chelsea. Reserve online and collect.',
-      'h1': 'Smudge and ritual supplies near Union Square', 'html': f'''<p class="lead">If you are hunting for sage, palo santo or frankincense in lower Manhattan, our apothecary counter is on 14th Street between Fifth Avenue and University Place.</p>
+      'h1': 'Smudge and ritual supplies near Union Square', 'html': f'''<p class="lead">If you are hunting for sage, palo santo or frankincense in lower Manhattan, our apothecary counter is on 14th Street just west of Fifth Avenue.</p>
 <h2>What is on the shelves</h2><ul><li>{S.cat_count["smudge"]} sage and smudge bundles and {S.cat_count["palo"]} palo santo pieces.</li><li>{S.cat_count["resins"]} resins and saps, with charcoal and tongs beside them.</li><li>Censers, smudge bowls, ritual kits and candles.</li></ul>
 <h2>Coming from nearby</h2><ul><li><b>East Village:</b> the L train west to 14 St&ndash;Union Square, or the M14A/M14D along 14th Street.</li><li><b>Union Square:</b> a short walk west along the south side of 14th Street.</li><li><b>Chelsea and the West Village:</b> the 1, 2, 3, F or M to 14th Street, then walk east.</li><li><b>Midtown:</b> the N, Q, R or W south to Union Square.</li></ul>
 {S.visit_block()}'''},
