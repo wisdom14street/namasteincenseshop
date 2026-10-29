@@ -152,7 +152,7 @@ def brand_intro(S, k, st):
 def brand_faq(S, k, st):
     name = S.BRAND_NAME[k]
     q = [(f'Is {name} sold near Union Square?', f'Yes. The Namaste Incense Shop apothecary at 2 West 14th Street has {st["n"]} {name} pieces in stock today.'),
-         (f'What is the price range for {name}?', f'Between {S.money(st["min"])} and {S.money(st["max"])} at the moment; this page refreshes daily.')]
+         (f'What is the price range for {name}?', (f'Between {S.money(st["min"])} and {S.money(st["max"])} at the moment' if st['max'] > st['min'] else f'{S.money(st["min"])} apiece at the moment') + '; this page refreshes daily.')]
     if st['pickup']: q.append(('Can I collect it in person?', 'Choose Pickup when you check out and come by the counter at 2 West 14th Street during opening hours.'))
     return q
 def BRAND_H1(S, k): return f'{S.BRAND_NAME[k]} at the apothecary'
