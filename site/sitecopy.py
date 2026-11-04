@@ -172,7 +172,11 @@ REL_PAIR = 'Complete the ritual'
 REL_MORE = 'Elsewhere on the {aisle} shelf'
 def describe(S, x):
     a = x['aisle']; t = E(x['title']); by = f' by {S.BRAND_NAME[x["brand"]]}' if x['brand'] else ''
-    if a in ('smudge', 'palo'):
+    # Source categories sometimes describe a scent rather than the product form.
+    # A soap, cologne or fragrance oil must not inherit incense-lighting directions.
+    if re.search(r'\b(cologne|soap|fragrance oil)\b', x['title'], re.I):
+        s = [f'{t}{by}.', 'Follow the directions and precautions on the product label.']
+    elif a in ('smudge', 'palo'):
         s = [f'{t}{by} comes from our {AISLES[a][0].lower()} shelf.', 'To use it, hold the tip to a flame for a moment, blow it out, and let the smoke drift as you walk the room, catching embers in a shell or bowl. Snuff it in sand when you finish, and never leave it smoldering.']
     elif a == 'resins':
         s = [f'{t}{by} is a resin to melt over a lit charcoal tablet.', 'Bed a censer with sand, light the coal with tongs, wait for a gray skin of ash, then add resin a few grains at a time. Our <a href="/guide/charcoal-and-resin/">charcoal and resin guide</a> covers it in detail.']
