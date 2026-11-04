@@ -24,6 +24,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Check catalog classification and cart attribution
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          node --test tests/cart.test.cjs
       - run: pip install segno pillow
       - name: Fetch catalog, pickup, best sellers; build namasteincenseshop.com
         run: |

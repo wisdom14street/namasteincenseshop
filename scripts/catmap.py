@@ -41,6 +41,9 @@ def category(p):
         c = TYPE2CAT[ty]
         if ty == 'Resin Incense' and re.search(r'charcoal', t, re.I): return 'burners'
         if ty == 'Resin Incense' and re.search(r'ritual salt', t, re.I): return None
+        # A measured pack of resin-coated sticks burns directly. Do not mistake the
+        # maker name "Soul Sticks" on a bag of loose resin for the product's form.
+        if ty == 'Resin Incense' and re.search(r'\b\d+\s+sticks?\b', t, re.I): return 'sticks'
         if ty == 'Smudging' and re.search(r'fluorite|gemstone|crystal', t, re.I): return None
         if ty == 'Incense Burner' and re.search(r'holder|ash catcher', t, re.I) and not re.search(r'charcoal|backflow|resin', t, re.I): return 'holders'
         if ty == 'Incense Holder' and re.search(r'backflow|charcoal|cauldron', t, re.I): return 'burners'

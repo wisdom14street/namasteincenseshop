@@ -7,6 +7,7 @@ Usage: python3 scripts/build.py [--preview] [--site=https://example.com]
 """
 import json, os, re, sys, html, shutil, datetime
 from collections import Counter
+from urllib.parse import urlencode
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path[:0] = [HERE, os.path.join(ROOT, 'site')]
 from catmap import category
@@ -35,6 +36,7 @@ GA_HEAD = '' if (PREVIEW or not GA_ID) else (f'<script async src="https://www.go
     f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","{GA_ID}",' + json.dumps({'site_brand': BRAND}).replace('</', '<\\/') + ');</script>')
 GA_FOOT = '<script src="/assets/ga.js" defer></script>' if GA_HEAD else ''
 CART_DOMAIN = SITE.split('://', 1)[-1].split('/')[0].removeprefix('www.')
+BOOKSHOP_LINK = SHOP + '/?' + urlencode({'utm_source': CART_DOMAIN, 'utm_medium': 'referral', 'utm_campaign': 'storefront', 'utm_content': 'bookshop_footer'})
 def single_vid(x):
     """variant id when a card can go straight to the cart (one listing, one in-stock option), else 0"""
     av = [v for v in x['variants'] if v['available']]
@@ -238,7 +240,7 @@ def footer():
     expl = ''.join(f'<a href="{u}">{E(n)}</a>' for n, u in C.FOOTER_EXPLORE(S))
     return f'''<footer class="foot"><div class="wrap grid4">
 <div><a class="logo light" href="/">{logo()}</a><p class="legal">{LEGAL}</p><p class="small">{E(C.FOOT_BLURB)}</p><p class="small findnote">{P2C["foot"]} <a href="/visit/">How to find us &rarr;</a></p>
-<p class="small">Orders are checked out on Shopify through namastebookshop.com, which processes payment and ships from New York City.</p></div>
+<p class="small">Orders are checked out on Shopify through namastebookshop.com, which processes payment and ships from New York City.</p><a href="{E(BOOKSHOP_LINK)}">Shop Namaste Bookshop &rarr;</a></div>
 <div><h2 class="fh">Shop</h2>{''.join(f'<a href="/shop/{AISLES[k][2]}/">{E(AISLES[k][0])}</a>' for k in AISLE_KEYS)}<a href="/brands/">Brands A&ndash;Z</a></div>
 <div><h2 class="fh">Explore</h2>{expl}<a href="/faq/">FAQ</a></div>
 <div><h2 class="fh">Visit</h2><p class="small foottxt">{STORE_ADDR}</p>{''.join(f'<p class="small foottxt">{d}: {h}</p>' for d, h in HOURS)}<a href="tel:{TEL}">Call {PHONE}</a><a href="{DIRECTIONS}" rel="noopener" target="_blank">Get directions</a><a href="/visit/">Visit &amp; pickup info</a>
@@ -255,7 +257,7 @@ def page(path, title, desc, body, extra_head='', canonical=True, index=True, og_
     gsv = f'<meta name="google-site-verification" content="{E(GSV)}">' if GSV and path == '/' else ''
     doc = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">{GA_HEAD}
 <title>{E(title)}</title><meta name="description" content="{E(desc)}">{robots}{gsv}{f'<link rel="canonical" href="{url}">' if canonical else ''}
-<meta property="og:site_name" content="{E(BRAND)}"><meta property="og:type" content="website"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{E(ogi)}">{ogx}{ogx}
+<meta property="og:site_name" content="{E(BRAND)}"><meta property="og:type" content="website"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{E(ogi)}">{ogx}
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{E(title)}"><meta name="twitter:description" content="{E(desc)}"><meta name="twitter:image" content="{E(ogi)}">
 <meta name="theme-color" content="{CFG['theme']['ink']}"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://cdn.shopify.com"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="{CFG['theme']['fonts']}" rel="stylesheet">
