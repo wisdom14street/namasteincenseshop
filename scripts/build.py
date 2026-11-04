@@ -61,7 +61,8 @@ def cart_boot():
             f'<script>window.NI_CART={_CART_CFG}</script><script src="/assets/cart.js" defer></script>')
 STORE_STREET = '2 West 14th Street'; STORE_CITY, STORE_REGION, STORE_ZIP = 'New York', 'NY', '10011'
 STORE_ADDR = f'{STORE_STREET}, {STORE_CITY}, {STORE_REGION} {STORE_ZIP}'
-PHONE, TEL = '646-876-1401', '+16468761401'
+# Bookshop at 2 W 14th St: Shopify location and /pages/contact verified 2026-11-04.
+PHONE, TEL = '212-645-0141', '+12126450141'
 GEO = (40.73602, -73.99404)
 HOURS = [('Monday to Thursday', '11 AM to 8 PM'), ('Friday and Saturday', '11 AM to 9 PM'), ('Sunday', '11 AM to 7 PM')]
 HOURS_LD = [(['Monday', 'Tuesday', 'Wednesday', 'Thursday'], '11:00', '20:00'), (['Friday', 'Saturday'], '11:00', '21:00'), (['Sunday'], '11:00', '19:00')]
